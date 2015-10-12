@@ -17,6 +17,7 @@ import butterknife.OnClick;
 import de.greenrobot.event.EventBus;
 import jhw.eventbusdemo.R;
 import jhw.eventbusdemo.event.AsyncEvent;
+import jhw.eventbusdemo.event.EventTestEvent;
 import jhw.eventbusdemo.event.MainEvent;
 import jhw.eventbusdemo.event.BaseEvent;
 import jhw.eventbusdemo.event.MyEventBus;
@@ -24,7 +25,7 @@ import jhw.eventbusdemo.event.MyEventBus;
 /**
  * Created by jihongwen on 15/9/17.
  */
-public class EventTestFragment extends EventBusBaseFragment<MainEvent, AsyncEvent> {
+public class EventTestFragment extends EventBusBaseFragment<EventTestEvent, AsyncEvent> {
 
     @Bind(value = R.id.eventShow)
     TextView eventShow;
@@ -35,11 +36,11 @@ public class EventTestFragment extends EventBusBaseFragment<MainEvent, AsyncEven
     @SuppressWarnings("unused")
     public void onClick(View view) {
         String text = eventText.getText().toString();
-        MyEventBus.getDefault().post(new MainEvent(BaseEvent.Type.REFRESH, text));
+        MyEventBus.getDefault().post(new EventTestEvent(BaseEvent.Type.REFRESH, text));
     }
 
     @SuppressWarnings("unused")
-    public void onEventMainThread(MainEvent event) {
+    public void onEventMainThread(EventTestEvent event) {
         eventDelegation(event);
     }
 
@@ -49,7 +50,7 @@ public class EventTestFragment extends EventBusBaseFragment<MainEvent, AsyncEven
     }
 
     @Override
-    public void eventDelegation(MainEvent event) {
+    public void eventDelegation(EventTestEvent event) {
         eventShow.setText(event.data.toString());
     }
 
