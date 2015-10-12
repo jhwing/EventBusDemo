@@ -20,7 +20,7 @@ public abstract class EventBusBaseFragment<Event, AsyncEvent extends BaseEvent> 
     }
 
     @SuppressWarnings("unused")
-    public void onEvnetBackground(AsyncEvent event) {
+    public void onEventBackgroundThread(AsyncEvent event) {
         asyncEventDelegation(event);
     }
 

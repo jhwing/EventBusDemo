@@ -8,10 +8,10 @@ import butterknife.ButterKnife.ViewBinder;
 public class EventTestFragment$$ViewBinder<T extends jhw.eventbusdemo.fragment.EventTestFragment> implements ViewBinder<T> {
   @Override public void bind(final Finder finder, final T target, Object source) {
     View view;
-    view = finder.findRequiredView(source, 2131492949, "field 'eventShow'");
-    target.eventShow = finder.castView(view, 2131492949, "field 'eventShow'");
     view = finder.findRequiredView(source, 2131492948, "field 'eventText'");
     target.eventText = finder.castView(view, 2131492948, "field 'eventText'");
+    view = finder.findRequiredView(source, 2131492949, "field 'eventShow'");
+    target.eventShow = finder.castView(view, 2131492949, "field 'eventShow'");
     view = finder.findRequiredView(source, 2131492947, "method 'onClick'");
     view.setOnClickListener(
       new butterknife.internal.DebouncingOnClickListener() {
@@ -24,7 +24,7 @@ public class EventTestFragment$$ViewBinder<T extends jhw.eventbusdemo.fragment.E
   }
 
   @Override public void unbind(T target) {
-    target.eventShow = null;
     target.eventText = null;
+    target.eventShow = null;
   }
 }

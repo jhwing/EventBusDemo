@@ -59,9 +59,9 @@ public class MainActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
         ButterKnife.bind(this);
-        startActivity(new Intent(this, RoboBindingTestActivity.class));
-        finish();
-        //initMainFragment();
+//        startActivity(new Intent(this, RoboBindingTestActivity.class));
+//        finish();
+        initMainFragment();
     }
 
     private void initMainFragment() {

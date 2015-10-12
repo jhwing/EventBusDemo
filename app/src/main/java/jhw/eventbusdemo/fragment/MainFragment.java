@@ -6,6 +6,7 @@ import android.support.annotation.Nullable;
 import android.view.View;
 import android.widget.EditText;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import butterknife.Bind;
 import butterknife.ButterKnife;
@@ -15,6 +16,7 @@ import jhw.eventbusdemo.R;
 import jhw.eventbusdemo.event.AsyncEvent;
 import jhw.eventbusdemo.event.MainEvent;
 import jhw.eventbusdemo.event.BaseEvent;
+import jhw.eventbusdemo.event.MyEventBus;
 
 /**
  * Created by jihongwen on 15/9/17.
@@ -32,7 +34,17 @@ public class MainFragment extends EventBusBaseFragment<MainEvent, AsyncEvent> {
     @SuppressWarnings("unused")
     public void onClick(View view) {
         String text = eventText.getText().toString();
-        EventBus.getDefault().post(new MainEvent(BaseEvent.Type.REFRESH, text));
+        MyEventBus.getDefault().post(new MainEvent(BaseEvent.Type.REFRESH, text));
+    }
+
+    @SuppressWarnings("unused")
+    public void onEventMainThread(MainEvent event) {
+        eventDelegation(event);
+    }
+
+    @SuppressWarnings("unused")
+    public void onEventBackgroundThread(AsyncEvent event) {
+        asyncEventDelegation(event);
     }
 
     @Override
@@ -57,13 +69,13 @@ public class MainFragment extends EventBusBaseFragment<MainEvent, AsyncEvent> {
     @Override
     public void onAttach(Activity activity) {
         super.onAttach(activity);
-        EventBus.getDefault().register(this);
+        MyEventBus.getDefault().register(this);
     }
 
     @Override
     public void onDestroy() {
         super.onDestroy();
-        EventBus.getDefault().unregister(this);
+        MyEventBus.getDefault().unregister(this);
     }
 
     @Override
